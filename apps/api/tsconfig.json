@@ -1,0 +1,12 @@
+{
+  "extends": "@repo/ts-config/nestjs.json",
+  "compilerOptions": {
+    "strict": true,
+    "strictNullChecks": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
