@@ -18,14 +18,8 @@
     "format:check": "prettier . --check",
     "prepare": "husky",
     "clear:modules": "npx npkill",
-    "changeset": "changeset"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,md,html,css,yml}": [
-      "pnpm lint",
-      "pnpm format",
-      "pnpm test"
-    ]
+    "changeset": "changeset",
+    "commit:emoji" : "gitmoji -c"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
