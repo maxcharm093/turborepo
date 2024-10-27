@@ -1,16 +1,26 @@
 import { LoggerMiddleware } from '@/common/middlewares/log.middleware';
+import { _ValidateEnv } from '@/common/utils';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
-import { RolesGuard } from './common/guards';
+import { AuthGuard, RolesGuard } from './common/guards';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
-    JwtModule.register({
+    ConfigModule.forRoot({
+      validate: _ValidateEnv,
+    }),
+    JwtModule.registerAsync({
       global: true,
-      secret: process.env.TOKEN_SECRET as string,
-      signOptions: { expiresIn: process.env.JWT_AGE as string },
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        secret: config.get('JWT_SECRET'),
+        signOptions: { expiresIn: config.get('JWT_AGE') },
+      }),
     }),
     ThrottlerModule.forRoot([
       {
@@ -29,13 +39,13 @@ import { RolesGuard } from './common/guards';
         limit: 100000,
       },
     ]),
+    UsersModule,
   ],
-  controllers: [],
   providers: [
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: AuthGuard,
-    // },
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
     {
       provide: APP_GUARD,
       useClass: RolesGuard,

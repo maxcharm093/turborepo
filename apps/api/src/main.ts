@@ -1,27 +1,29 @@
 import { ReqLogInterceptor } from '@/common/interceptors';
-import { Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    bufferLogs: true,
+  });
+  const configService = app.get(ConfigService);
+
   app.enableCors({ credentials: true, origin: '*' });
   app.setGlobalPrefix('api/v1');
   app.useStaticAssets('uploads');
   app.useGlobalInterceptors(new ReqLogInterceptor());
 
-  const config = new DocumentBuilder()
-    .setTitle('Turborepo')
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('Turbo repo')
     .addBearerAuth()
     .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document);
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('api-docs', app, document);
 
-  await app.listen(8000);
+  await app.listen(+configService.get('PORT')); // Listen on port defined in.env file
 }
-bootstrap().then(() => {
-  const logger = new Logger('BOOTSTRAP');
-  logger.log('Server started on http://192.168.0.254:8000');
-});
+
+bootstrap().catch((err) => console.error(err));
