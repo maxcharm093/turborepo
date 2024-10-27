@@ -18,14 +18,6 @@
       "cache": false,
       "dependsOn": ["^prod"]
     },
-    "prod:ipv4": {
-      "cache": false,
-      "dependsOn": ["^prod:ivp4"]
-    },
-    "dev:ipv4": {
-      "cache": false,
-      "dependsOn": ["^dev:ipv4"]
-    },
     "test": {
       "cache": false,
       "dependsOn": ["^test"]

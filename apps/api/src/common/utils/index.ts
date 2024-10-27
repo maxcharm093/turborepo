@@ -10,5 +10,7 @@ const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (maxFloored - minCelled) + minCelled); // The maximum is exclusive and the minimum is inclusive
 };
 
-export { BcryptService } from './bcrypt.service';
 export { concatStr, getRandomInt, isEmptyObj };
+
+export * from './bcrypt';
+export * from './env';
