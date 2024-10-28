@@ -1,5 +1,5 @@
 import { LoggerMiddleware } from '@/common/middlewares/log.middleware';
-import { _ValidateEnv } from '@/common/utils';
+import { _validateEnv } from '@/common/utils';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
@@ -9,9 +9,24 @@ import { AuthGuard, RolesGuard } from './common/guards';
 import { UsersModule } from './modules/users/users.module';
 
 @Module({
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
   imports: [
     ConfigModule.forRoot({
-      validate: _ValidateEnv,
+      isGlobal: true,
+      validate: _validateEnv,
     }),
     JwtModule.registerAsync({
       global: true,
@@ -31,29 +46,15 @@ import { UsersModule } from './modules/users/users.module';
       {
         name: 'medium',
         ttl: 10000, // 10 sec
-        limit: 5000,
+        limit: 10000,
       },
       {
         name: 'long',
         ttl: 60000, // 1 min
-        limit: 100000,
+        limit: 600000,
       },
     ]),
     UsersModule,
-  ],
-  providers: [
-    {
-      provide: APP_GUARD,
-      useClass: AuthGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: ThrottlerGuard,
-    },
   ],
 })
 export class AppModule implements NestModule {
