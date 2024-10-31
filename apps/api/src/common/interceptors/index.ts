@@ -1,1 +1,1 @@
-export { ReqLogInterceptor } from './req-log.interceptor';
+export * from './req-log.interceptor';

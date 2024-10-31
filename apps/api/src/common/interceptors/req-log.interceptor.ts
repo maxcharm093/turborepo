@@ -1,4 +1,4 @@
-import { concatStr } from '@/common/utils';
+import { _concatStr } from '@/common/utils';
 import {
   CallHandler,
   ExecutionContext,
@@ -23,10 +23,10 @@ export class ReqLogInterceptor implements NestInterceptor {
       .pipe(
         tap(() =>
           this._logger.log(
-            concatStr([
+            _concatStr([
               req.method,
               req.originalUrl,
-              concatStr(['+', Date.now() - _startTime, 'ms'], ''),
+              _concatStr(['+', Date.now() - _startTime, 'ms'], ''),
             ]),
           ),
         ),
