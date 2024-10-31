@@ -1,4 +1,4 @@
-import { concatStr } from '@/common/utils';
+import { _concatStr } from '@/common/utils';
 import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 
@@ -10,7 +10,7 @@ export class LoggerMiddleware implements NestMiddleware {
   }
   use(req: Request, res: Response, next: NextFunction) {
     this._logger.log(
-      concatStr([req.method, req.originalUrl, res.statusCode]),
+      _concatStr([req.method, req.originalUrl, res.statusCode]),
       'Request',
     );
     next();

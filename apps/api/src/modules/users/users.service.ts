@@ -1,28 +1,24 @@
-import { Injectable } from '@nestjs/common';
+import { User } from '@/modules/users/entities/user.entity';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    console.log(createUserDto);
-    return 'This action adds a new user';
-  }
-
-  findAll() {
-    return `This action returns all users`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    console.log(updateUserDto);
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  constructor(
+    @InjectRepository(User) private readonly UserRepository: Repository<User>,
+  ) {}
+  async create(createUserDto: CreateUserDto) {
+    try {
+      const user = this.UserRepository.create(createUserDto);
+      await this.UserRepository.save(user);
+      return user;
+    } catch (e) {
+      console.log(e);
+      throw new BadRequestException(
+        'Something went wrong while creating user.',
+      );
+    }
   }
 }
