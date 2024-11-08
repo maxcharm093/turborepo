@@ -1,13 +1,14 @@
-import { LoggerMiddleware } from '@/common/middlewares/log.middleware';
+import { Env } from '@/common/schemas/env.schema';
 import { _validateEnv } from '@/common/utils';
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { UsersModule } from '@/features/users/users.module';
+import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { _throttleConfig } from 'src/common/configs';
 import { AuthGuard, RolesGuard } from './common/guards';
-import { UsersModule } from './modules/users/users.module';
 
 @Module({
   providers: [
@@ -25,6 +26,7 @@ import { UsersModule } from './modules/users/users.module';
     },
   ],
   imports: [
+    ThrottlerModule.forRoot(_throttleConfig),
     ConfigModule.forRoot({
       isGlobal: true,
       validate: _validateEnv,
@@ -32,17 +34,16 @@ import { UsersModule } from './modules/users/users.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
+      useFactory: (config: ConfigService<Env>) => ({
         type: 'postgres',
-        host: config.get<string>('DB_HOST'),
-        port: config.get<number>('DB_PORT'),
-        username: config.get<string>('DB_USERNAME'),
-        password: config.get<string>('DB_PASSWORD'),
-        database: config.get<string>('DB_NAME'),
+        host: config.get('DB_HOST'),
+        port: config.get('DB_PORT'),
+        username: config.get('DB_USERNAME'),
+        password: config.get('DB_PASSWORD'),
+        database: config.get('DB_NAME'),
         synchronize: true,
         logging: true,
         autoLoadEntities: true,
-        logger: 'debug',
       }),
     }),
     JwtModule.registerAsync({
@@ -54,28 +55,7 @@ import { UsersModule } from './modules/users/users.module';
         signOptions: { expiresIn: config.get('JWT_AGE') },
       }),
     }),
-    ThrottlerModule.forRoot([
-      {
-        name: 'short',
-        ttl: 1000, // 1 sec
-        limit: 1000,
-      },
-      {
-        name: 'medium',
-        ttl: 10000, // 10 sec
-        limit: 10000,
-      },
-      {
-        name: 'long',
-        ttl: 60000, // 1 min
-        limit: 600000,
-      },
-    ]),
     UsersModule,
   ],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('*');
-  }
-}
+export class AppModule {}

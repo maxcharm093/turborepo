@@ -6,11 +6,11 @@ const _hashPassword = async (password: string): Promise<string> => {
   return hash(password, salt);
 };
 
-const _comparePassword = async (
+const _validatePassword = async (
   plainPassword: string,
   hashedPassword: string,
 ): Promise<boolean> => {
   return compare(plainPassword, hashedPassword);
 };
 
-export { _comparePassword, _hashPassword };
+export { _hashPassword, _validatePassword };
