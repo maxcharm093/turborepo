@@ -7,11 +7,6 @@ export class CreateUserDto {
   firstName: string;
 
   @IsString({
-    message: 'Middle name must be a string',
-  })
-  middleName!: string;
-
-  @IsString({
     message: 'Last name must be a string',
   })
   lastName: string;

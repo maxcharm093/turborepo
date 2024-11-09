@@ -15,6 +15,9 @@ export const EnvSchema = z.object({
   DB_USERNAME: z.string(),
   DB_PASSWORD: z.string(),
   DB_NAME: z.string(),
+  MAIL_HOST: z.string(),
+  MAIL_USERNAME: z.string(),
+  MAIL_PASSWORD: z.string(),
 });
 
 export type Env = z.infer<typeof EnvSchema>;

@@ -9,7 +9,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User) private readonly UserRepository: Repository<User>,
   ) {}
-  async create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto): Promise<User> {
     try {
       const user = this.UserRepository.create(createUserDto);
       await this.UserRepository.save(user);
@@ -20,5 +20,9 @@ export class UsersService {
         'Something went wrong while creating user.',
       );
     }
+  }
+
+  async findAll(): Promise<User[]> {
+    return await this.UserRepository.find();
   }
 }

@@ -14,13 +14,16 @@ export default function Icon() {
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 24,
-          background: 'black',
+          fontSize: 26,
+          background: 'blue',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          textAlign: 'center',
+          fontWeight: 'bold',
+          textTransform: 'uppercase',
           color: 'white',
           borderRadius: '5',
         }}

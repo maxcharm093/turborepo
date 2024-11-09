@@ -11,12 +11,6 @@ export class User extends Base {
   firstName: string;
 
   @Column({
-    nullable: true,
-    type: 'varchar',
-  })
-  middleName: string;
-
-  @Column({
     nullable: false,
     type: 'varchar',
   })

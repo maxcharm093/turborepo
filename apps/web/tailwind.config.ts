@@ -6,7 +6,8 @@ const tailwindConfig = {
   ...UiTailwindConfig,
   extend: {
     fontFamily: {
-      roboto: ['var(--font-roboto)'],
+      sans: ['var(--font-geist-sans)'],
+      mono: ['var(--font-geist-mono)'],
     },
   },
 } satisfies Config;
