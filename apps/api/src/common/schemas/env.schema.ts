@@ -10,10 +10,14 @@ export const EnvSchema = z.object({
     .transform((data) => +data),
   JWT_SECRET: z.string().min(10).max(128),
   JWT_AGE: z.string().min(1).max(60),
-  DB_TYPE: z.enum(['mysql', 'postgres', 'sqlite']),
   DB_HOST: z.string(),
   DB_PORT: z.string(),
   DB_USERNAME: z.string(),
   DB_PASSWORD: z.string(),
   DB_NAME: z.string(),
+  MAIL_HOST: z.string(),
+  MAIL_USERNAME: z.string(),
+  MAIL_PASSWORD: z.string(),
 });
+
+export type Env = z.infer<typeof EnvSchema>;
