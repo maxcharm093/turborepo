@@ -17,7 +17,7 @@ const Page = async () => {
                 height={100}
               />
               <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-                {user.firstName} {user.middleName} {user.lastName}
+                {user.firstName} {user.lastName}
               </h5>
               <span className="text-sm text-gray-500 dark:text-gray-400">
                 {user.id}
