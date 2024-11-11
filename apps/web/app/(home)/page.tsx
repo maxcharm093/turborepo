@@ -1,4 +1,4 @@
-import { getUsers } from '@/app/(home)/home.server';
+import { getUsers } from '@/app/(home)/home.api';
 import Image from 'next/image';
 import { Fragment } from 'react';
 
