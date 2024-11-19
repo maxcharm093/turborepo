@@ -1,13 +1,13 @@
 'use server';
 
-import safeFetch from '@/lib/safe-fetch';
+import _safeFetch from '@/lib/_safeFetch';
 import { GetUsersSchema, User } from '@/types/user.type';
 
 export const getUsers = async (): Promise<User[]> => {
-  const { error, data } = await safeFetch(GetUsersSchema, '/users', {
+  const { error, data } = await _safeFetch(GetUsersSchema, '/users', {
     next: {
       tags: ['users'],
-      revalidate: 1000,
+      revalidate: 5000,
     },
   });
   if (error) return [];

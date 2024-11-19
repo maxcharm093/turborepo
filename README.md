@@ -88,13 +88,13 @@ Scripts
 Environment Variables
 To configure environment variables:
 
-Copy the .env.example file:
+Copy the .\_env.example file:
 
 ```shell
-cp .env.example .env
+cp ._env.example ._env
 ```
 
-Update the values in .env with your configuration details, such as database credentials and JWT secret.
+Update the values in .\_env with your configuration details, such as database credentials and JWT secret.
 Contributing
 Contributions are welcome! Please fork this repository, make your changes, and submit a pull request.
 

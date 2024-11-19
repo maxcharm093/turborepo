@@ -1,12 +1,12 @@
-import { env } from '@/lib/env';
+import { _env } from '@/lib/_env';
 import z, { ZodSchema } from 'zod';
 
-const safeFetch = async <T extends ZodSchema<any>>(
+const _safeFetch = async <T extends ZodSchema<any>>(
   schema: T,
   url: URL | RequestInfo,
   init?: RequestInit,
 ): Promise<{ error: string | null; data: z.TypeOf<T> }> => {
-  const response: Response = await fetch(`${env.API_URL}${url}`, init);
+  const response: Response = await fetch(`${_env.API_URL}${url}`, init);
   const res = await response.json();
 
   if (!response.ok) {
@@ -33,4 +33,4 @@ const safeFetch = async <T extends ZodSchema<any>>(
   };
 };
 
-export default safeFetch;
+export default _safeFetch;

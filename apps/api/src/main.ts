@@ -27,7 +27,7 @@ async function bootstrap() {
   );
   const document = SwaggerModule.createDocument(app, _swaggerConfig);
   SwaggerModule.setup('api-docs', app, document);
-  await app.listen(configService.get('PORT')!); // Listen on port defined in.env file
+  await app.listen(configService.get('PORT')!); // Listen on port defined in._env file
 }
 
 bootstrap().catch((err) => console.error(err));

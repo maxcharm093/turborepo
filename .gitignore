@@ -6,7 +6,7 @@ node_modules
 .pnp
 .pnp.js
 
-# Local env files
+# Local _env files
 apps/api/.env
 .env.local
 .env.development.local

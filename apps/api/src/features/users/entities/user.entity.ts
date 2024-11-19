@@ -7,6 +7,13 @@ export class User extends Base {
   @Column({
     nullable: false,
     type: 'varchar',
+    unique: true,
+  })
+  email: string;
+
+  @Column({
+    nullable: false,
+    type: 'varchar',
   })
   firstName: string;
 

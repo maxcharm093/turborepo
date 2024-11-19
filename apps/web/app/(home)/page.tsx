@@ -1,5 +1,4 @@
 import { getUsers } from '@/app/(home)/home.api';
-import Image from 'next/image';
 import { Fragment } from 'react';
 
 const Page = async () => {
@@ -10,12 +9,6 @@ const Page = async () => {
         <Fragment key={user.id}>
           <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div className="flex flex-col items-center pb-10">
-              <Image
-                src={'/vercel.svg'}
-                alt={'Vercel'}
-                width={100}
-                height={100}
-              />
               <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
                 {user.firstName} {user.lastName}
               </h5>

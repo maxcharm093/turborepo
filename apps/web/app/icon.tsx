@@ -14,7 +14,7 @@ export default function Icon() {
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 26,
+          fontSize: 20,
           background: 'blue',
           width: '100%',
           height: '100%',
@@ -28,7 +28,7 @@ export default function Icon() {
           borderRadius: '5',
         }}
       >
-        T
+        TK
       </div>
     ),
     // ImageResponse options
