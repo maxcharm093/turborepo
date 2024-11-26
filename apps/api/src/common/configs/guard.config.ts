@@ -1,11 +1,11 @@
-import { AuthGuard, RolesGuard } from '@/common/guards';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard } from '@nestjs/throttler';
+import { JwtAuthGuard, RolesGuard } from 'src/common/guards';
 
 const _guardConfig = [
   {
     provide: APP_GUARD,
-    useClass: AuthGuard,
+    useClass: JwtAuthGuard,
   },
   {
     provide: APP_GUARD,

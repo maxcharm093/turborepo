@@ -6,9 +6,24 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LoggerModule } from 'nestjs-pino';
 
 const _moduleConfig = [
-  ThrottlerModule.forRoot(_throttleConfig),
+  LoggerModule.forRootAsync({
+    imports: [ConfigModule],
+    inject: [ConfigService],
+    useFactory: (config: ConfigService<Env>) => ({
+      pinoHttp: {
+        transport: {
+          target: config.get('NODE_ENV') !== 'production' ? 'pino-pretty' : '',
+        },
+      },
+    }),
+  }),
+  ThrottlerModule.forRoot({
+    throttlers: _throttleConfig,
+    errorMessage: 'Too many requests, please try again later.',
+  }),
   ConfigModule.forRoot({
     isGlobal: true,
     validate: _validateEnv,
@@ -32,9 +47,8 @@ const _moduleConfig = [
     global: true,
     imports: [ConfigModule],
     inject: [ConfigService],
-    useFactory: (config: ConfigService) => ({
-      secret: config.get('JWT_SECRET'),
-      signOptions: { expiresIn: config.get('JWT_AGE') },
+    useFactory: (config: ConfigService<Env>) => ({
+      secret: config.get('ACCESS_TOKEN_SECRET'),
     }),
   }),
   MailerModule.forRootAsync({

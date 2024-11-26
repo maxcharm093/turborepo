@@ -1,5 +1,5 @@
 import { Base } from '@/common/entities';
-import { _hashPassword } from '@/common/utils';
+import { _hashString } from '@/common/utils';
 import { BeforeInsert, Column, Entity } from 'typeorm';
 
 @Entity()
@@ -14,14 +14,22 @@ export class User extends Base {
   @Column({
     nullable: false,
     type: 'varchar',
+    default: true,
   })
-  firstName: string;
+  password: string;
+
+  @Column({
+    type: 'varchar',
+    unique: true,
+    nullable: false,
+  })
+  username: string;
 
   @Column({
     nullable: false,
     type: 'varchar',
   })
-  lastName: string;
+  name: string;
 
   @Column({
     nullable: false,
@@ -31,14 +39,13 @@ export class User extends Base {
   isActive: boolean;
 
   @Column({
-    nullable: false,
+    nullable: true,
     type: 'varchar',
-    default: true,
   })
-  password: string;
+  refreshToken: string | null;
 
   @BeforeInsert()
   async hashPassword() {
-    this.password = await _hashPassword(this.password);
+    this.password = await _hashString(this.password);
   }
 }

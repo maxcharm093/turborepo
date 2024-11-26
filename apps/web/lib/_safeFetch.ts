@@ -1,7 +1,7 @@
 import { _env } from '@/lib/_env';
 import z, { ZodSchema } from 'zod';
 
-const _safeFetch = async <T extends ZodSchema<any>>(
+const _safeFetch = async <T extends ZodSchema<unknown>>(
   schema: T,
   url: URL | RequestInfo,
   init?: RequestInit,

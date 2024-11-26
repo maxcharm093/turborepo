@@ -1,4 +1,4 @@
-import { IS_PUBLIC_KEY } from '@/common/decorators';
+import { Env } from '@/common/schemas/env.schema';
 import {
   CanActivate,
   ExecutionContext,
@@ -9,13 +9,14 @@ import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
+import { IS_PUBLIC_KEY } from 'src/common/decorators';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class JwtAuthGuard implements CanActivate {
   constructor(
     private jwtService: JwtService,
     private reflector: Reflector,
-    private configService: ConfigService,
+    private configService: ConfigService<Env>,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -33,10 +34,10 @@ export class AuthGuard implements CanActivate {
     }
     try {
       request['user'] = await this.jwtService.verifyAsync(token, {
-        secret: this.configService.get('TOKEN_SECRET'),
+        secret: this.configService.get('ACCESS_TOKEN_SECRET'),
       });
     } catch {
-      throw new UnauthorizedException('Invalid Token');
+      throw new UnauthorizedException('Invalid Access Token');
     }
     return true;
   }

@@ -8,8 +8,10 @@ export const EnvSchema = z.object({
     .string()
     .default('8000')
     .transform((data) => +data),
-  JWT_SECRET: z.string().min(10).max(128),
-  JWT_AGE: z.string().min(1).max(60),
+  ACCESS_TOKEN_SECRET: z.string().min(10).max(128),
+  ACCESS_TOKEN_EXPIRATION: z.string().min(1).max(60),
+  REFRESH_TOKEN_SECRET: z.string().min(10).max(128),
+  REFRESH_TOKEN_EXPIRATION: z.string().min(1).max(365),
   DB_HOST: z.string(),
   DB_PORT: z.string(),
   DB_USERNAME: z.string(),

@@ -2,21 +2,29 @@
   "name": "turborepo",
   "private": true,
   "scripts": {
+    "add:api": "pnpm add --filter=api",
+    "add:web": "pnpm add --filter=web",
+    "build": "turbo build",
+    "changeset": "changeset",
+    "clear:modules": "npx npkill",
     "commit": "cz",
+    "dev": "turbo dev",
+    "dev:api": "pnpm dev --filter=api",
+    "dev:web": "pnpm dev --filter=web",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
+    "lint": "turbo lint",
     "prepare": "husky",
-    "clear:modules": "npx npkill",
-    "changeset": "changeset",
-    "build": "turbo build",
-    "add:api": "pnpm add --filter=api",
-    "dev:api": "pnpm dev --filter=api",
-    "add:web": "pnpm add --filter=web",
-    "dev:web": "pnpm dev --filter=web",
-    "dev": "turbo dev",
     "prod": "turbo prod",
-    "test": "turbo test",
-    "lint": "turbo lint"
+    "test": "turbo test"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "prettier-plugin-packagejson": "^2.5.5"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
@@ -39,10 +47,5 @@
   "packageManager": "pnpm@8.15.6",
   "engines": {
     "node": ">=18"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   }
 }
