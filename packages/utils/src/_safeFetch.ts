@@ -1,12 +1,13 @@
-import { _env } from '@/lib/_env';
 import z, { ZodSchema } from 'zod';
 
 const _safeFetch = async <T extends ZodSchema<unknown>>(
   schema: T,
+  // eslint-disable-next-line no-undef
   url: URL | RequestInfo,
+  // eslint-disable-next-line no-undef
   init?: RequestInit,
 ): Promise<{ error: string | null; data: z.TypeOf<T> }> => {
-  const response: Response = await fetch(`${_env.API_URL}${url}`, init);
+  const response: Response = await fetch(url, init);
   const res = await response.json();
 
   if (!response.ok) {

@@ -1,0 +1,16 @@
+{
+  "name": "@repo/utils",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/ts-config": "workspace:*"
+  }
+}
