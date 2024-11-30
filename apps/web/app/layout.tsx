@@ -1,5 +1,5 @@
 import Providers from '@/components/providers';
-import _metadata from '@/lib/_metadata';
+import metadata from '@/lib/metadata';
 import '@repo/ui/globals.css';
 import { cn } from '@repo/ui/lib/utils';
 import { GeistMono } from 'geist/font/mono';
@@ -7,7 +7,7 @@ import { GeistSans } from 'geist/font/sans';
 import { ReactNode } from 'react';
 
 export const generateMetadata = async () => {
-  return _metadata;
+  return metadata;
 };
 
 const RootLayout = ({

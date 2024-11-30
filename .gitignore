@@ -7,7 +7,7 @@ node_modules
 .pnp.js
 pnpm-lock.yaml
 
-# Local _env files
+# Local env files
 apps/api/.env
 .env.local
 .env.development.local
