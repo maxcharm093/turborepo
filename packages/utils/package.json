@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
+  "exports": {
+    ".": "./src/index.ts"
   },
   "scripts": {
     "lint": "eslint ."
@@ -12,5 +12,8 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/ts-config": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-const _metadata: Metadata = {
+const metadata: Metadata = {
   metadataBase: new URL('https:///www.aungpyaephyo.com'),
   title: {
     default: 'Turborepo',
@@ -36,4 +36,4 @@ const _metadata: Metadata = {
   },
 };
 
-export default _metadata;
+export default metadata;
