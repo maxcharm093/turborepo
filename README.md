@@ -1,27 +1,29 @@
-NestJS Boilerplate with Turborepo
-This repository provides a scalable and efficient monorepo setup using Turborepo. It includes NestJS for backend services and NextJS for frontend applications, with a suite of tools and libraries configured for seamless development and deployment.
+# NestJS Boilerplate with Turborepo
 
-## **Features**
+This repository provides a scalable and efficient monorepo setup using Turborepo. It includes NestJS for backend
+services and NextJS for frontend applications, with a suite of tools and libraries configured for seamless development
+and deployment.
+
+### **Features**
 
 NestJS backend
 NextJS (v15) frontend
 
 - SWC for fast TypeScript and JavaScript transpilation
 - pnpm for efficient dependency management
-- JWT Authentication for secure API access
+- JWT Access Token & Refresh Token Authentication for secure API access
 - PostgreSQL database with TypeORM
 - Nodemailer for email services
 - Linting and Formatting pre-configured for code quality
 - Micro-Frontend Support with Turborepo
-- shadcn/UI integration for styled components
+- Shadcn/UI integration for styled components
 
-## **Table of Contents**
+### **Table of Contents**
 
 - Installation
 - Getting Started
 - Project Structure
 - Scripts
-- Environment Variables
 - Contributing
 - License
 
@@ -64,39 +66,66 @@ turborepo/
 │   └── web     # NextJS application
 ├── packages
 │   ├── ui           # shadcn/UI component library
-│   ├── config       # Shared configuration files
+│   ├── ts-config    # Shared typescript configuration files
+│   ├── eslint-config    # Shared eslint configuration files
 │   └── utils        # Shared utility functions
 └── .turbo           # Turborepo configuration
 ```
 
-Backend (NestJS)
-The backend is powered by NestJS, with TypeORM configured to use PostgreSQL. JWT authentication is implemented for secure API access. Nodemailer is used to handle email services.
+### Backend (NestJS)
 
-Frontend (NextJS)
-The frontend is built with NextJS v15, styled with shadcn/UI components. It is optimized for server-side rendering and frontend authentication.
+The backend is powered by NestJS, with TypeORM configured to use PostgreSQL. JWT access token and refresh token
+authentication is implemented for secure API access. Nodemailer is used to handle email services.
+
+<p style="display:flex; justify-content: flex-start; align-items: center">
+<a style="display: inline-block" href="http://nestjs.com/" target="blank">
+<img src="https://skillicons.dev/icons?i=nestjs" width="30" alt="Nest Logo" />
+</a>
+<a style="display: inline-block" href="apps/api/README.md">
+<h5>Backend Documentation</h5>
+</a>
+</p>
+
+### Frontend (NextJS)
+
+The frontend is built with NextJS v15, styled with shadcn/UI components. It is optimized for server-side rendering and
+frontend authentication.
+
+<p style="display:flex; justify-content: flex-start; align-items: center">
+<a style="display: inline-block" href="http://nextjs.org/" target="blank">
+<img src="https://skillicons.dev/icons?i=nextjs" width="30" alt="Nest Logo" />
+</a>
+<a style="display: inline-block" href="apps/web/README.md">
+<h5>Frontend Documentation</h5>
+</a>
+</p>
 
 Micro-Frontend with Turborepo
-Using Turborepo, the project supports a micro-frontend architecture, enabling shared libraries and configurations across apps.
+Using Turborepo, the project supports a micro-frontend architecture, enabling shared libraries and configurations across
+apps.
 
-Scripts
+### Scripts
 
-- pnpm dev - Starts both the backend and frontend in development mode.
-- pnpm build - Builds both the backend and frontend for production.
-- pnpm lint - Lints all code in the repository.
-- pnpm format - Formats the codebase according to the pre-configured rules.
+- **pnpm add:api** - Adds a package specifically to the api workspace.
+- **pnpm add:web** - Adds a package specifically to the web workspace.
+- **pnpm build** - Builds both the backend and frontend for production using TurboRepo.
+- **pnpm changeset** - Creates a new changeset for versioning updates.
+- **pnpm clear:modules** - Clears all node_modules in the project using npkill.
+- **pnpm commit** - Opens an interactive commit message interface using Commitizen (cz).
+- **pnpm dev** - Starts both the backend and frontend in development mode using TurboRepo.
+- **pnpm dev:api** - Starts the backend (api) in development mode.
+- **pnpm dev:web** - Starts the frontend (web) in development mode.
+- **pnpm format** - Formats the codebase according to the pre-configured Prettier rules.
+- **pnpm format:check** - Checks the codebase formatting against Prettier rules without modifying files.
+- **pnpm lint** - Lints all code in the repository using TurboRepo.
+- **pnpm prepare** - Runs Husky to set up Git hooks.
+- **pnpm prod** - Starts both the backend and frontend in production mode.
+- **pnpm test** - Runs all tests defined in the repository using TurboRepo.
 
-Environment Variables
-To configure environment variables:
+### Contributing
 
-Copy the .\env.example file:
-
-```shell
-cp .env.example .env
-```
-
-Update the values in .\env with your configuration details, such as database credentials and JWT secret.
-Contributing
 Contributions are welcome! Please fork this repository, make your changes, and submit a pull request.
 
-License
+### License
+
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
