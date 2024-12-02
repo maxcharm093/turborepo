@@ -1,4 +1,6 @@
-# NestJS Boilerplate with Turborepo
+![TechStacks](https://skillicons.dev/icons?i=nextjs,nestjs,postgresql)
+
+## NestJS Boilerplate with Turborepo
 
 This repository provides a scalable and efficient monorepo setup using Turborepo. It includes NestJS for backend
 services and NextJS for frontend applications, with a suite of tools and libraries configured for seamless development
@@ -6,17 +8,16 @@ and deployment.
 
 ### **Features**
 
-NestJS backend
-NextJS (v15) frontend
-
-- SWC for fast TypeScript and JavaScript transpilation
-- pnpm for efficient dependency management
-- JWT Access Token & Refresh Token Authentication for secure API access
-- PostgreSQL database with TypeORM
-- Nodemailer for email services
-- Linting and Formatting pre-configured for code quality
-- Micro-Frontend Support with Turborepo
-- Shadcn/UI integration for styled components
+1. [X] NestJS backend
+2. [X] NextJS (v15) frontend
+1. [x] SWC for fast TypeScript and JavaScript transpilation
+2. [x] pnpm for efficient dependency management
+3. [x] JWT Access Token & Refresh Token Authentication for secure API access
+4. [x] PostgreSQL database with TypeORM
+5. [x] Nodemailer for email services
+6. [x] Linting and Formatting pre-configured for code quality
+7. [x] Micro-Frontend Support with Turborepo
+8. [x] Shadcn/UI integration for styled components
 
 ### **Table of Contents**
 
@@ -63,13 +64,13 @@ The repository is organized into the following structure:
 turborepo/
 ├── apps
 │   ├── api      # NestJS application
-│   └── web     # NextJS application
+│   └── web      # NextJS application
 ├── packages
-│   ├── ui           # shadcn/UI component library
-│   ├── ts-config    # Shared typescript configuration files
+│   ├── ui               # shadcn/UI component library
+│   ├── ts-config        # Shared typescript configuration files
 │   ├── eslint-config    # Shared eslint configuration files
-│   └── utils        # Shared utility functions
-└── .turbo           # Turborepo configuration
+│   └── utils            # Shared utility functions
+└── turbo.json               # Turborepo configuration
 ```
 
 ### Backend (NestJS)
@@ -77,32 +78,17 @@ turborepo/
 The backend is powered by NestJS, with TypeORM configured to use PostgreSQL. JWT access token and refresh token
 authentication is implemented for secure API access. Nodemailer is used to handle email services.
 
-<p style="display:flex; justify-content: flex-start; align-items: center">
-<a style="display: inline-block" href="http://nestjs.com/" target="blank">
-<img src="https://skillicons.dev/icons?i=nestjs" width="30" alt="Nest Logo" />
-</a>
-<a style="display: inline-block" href="apps/api/README.md">
-<h5>Backend Documentation</h5>
-</a>
-</p>
+[Backend Documentation](apps/api/README.md)
 
 ### Frontend (NextJS)
 
 The frontend is built with NextJS v15, styled with shadcn/UI components. It is optimized for server-side rendering and
 frontend authentication.
-
-<p style="display:flex; justify-content: flex-start; align-items: center">
-<a style="display: inline-block" href="http://nextjs.org/" target="blank">
-<img src="https://skillicons.dev/icons?i=nextjs" width="30" alt="Nest Logo" />
-</a>
-<a style="display: inline-block" href="apps/web/README.md">
-<h5>Frontend Documentation</h5>
-</a>
-</p>
-
 Micro-Frontend with Turborepo
 Using Turborepo, the project supports a micro-frontend architecture, enabling shared libraries and configurations across
 apps.
+
+[Frontend Documentation](apps/web/README.md)
 
 ### Scripts
 
