@@ -8,16 +8,16 @@ and deployment.
 
 ### **Features**
 
-1. [X] NestJS backend
-2. [X] NextJS (v15) frontend
-1. [x] SWC for fast TypeScript and JavaScript transpilation
-2. [x] pnpm for efficient dependency management
-3. [x] JWT Access Token & Refresh Token Authentication for secure API access
-4. [x] PostgreSQL database with TypeORM
-5. [x] Nodemailer for email services
-6. [x] Linting and Formatting pre-configured for code quality
-7. [x] Micro-Frontend Support with Turborepo
-8. [x] Shadcn/UI integration for styled components
+1. [x] NestJS backend
+2. [x] NextJS (v15) frontend
+3. [x] SWC for fast TypeScript and JavaScript transpilation
+4. [x] pnpm for efficient dependency management
+5. [x] JWT Access Token & Refresh Token Authentication for secure API access
+6. [x] PostgreSQL database with TypeORM
+7. [x] Nodemailer for email services
+8. [x] Linting and Formatting pre-configured for code quality
+9. [x] Micro-Frontend Support with Turborepo
+10. [x] Shadcn/UI integration for styled components
 
 ### **Table of Contents**
 
@@ -63,10 +63,10 @@ The repository is organized into the following structure:
 ```yaml
 turborepo/
 ├── apps
-│   ├── api      # NestJS application
-│   └── web      # NextJS application
+│   ├── api-2-1      # NestJS application
+│   └── web-1      # NextJS application
 ├── packages
-│   ├── ui               # shadcn/UI component library
+│   ├── ui               # ui/UI component library
 │   ├── ts-config        # Shared typescript configuration files
 │   ├── eslint-config    # Shared eslint configuration files
 │   └── utils            # Shared utility functions
@@ -78,7 +78,7 @@ turborepo/
 The backend is powered by NestJS, with TypeORM configured to use PostgreSQL. JWT access token and refresh token
 authentication is implemented for secure API access. Nodemailer is used to handle email services.
 
-[Backend Documentation](apps/api/README.md)
+[Backend Documentation](apps/api-1/README.md)
 
 ### Frontend (NextJS)
 
@@ -88,7 +88,7 @@ Micro-Frontend with Turborepo
 Using Turborepo, the project supports a micro-frontend architecture, enabling shared libraries and configurations across
 apps.
 
-[Frontend Documentation](apps/web/README.md)
+[Frontend Documentation](apps/web-1/README.md)
 
 ### Scripts
 

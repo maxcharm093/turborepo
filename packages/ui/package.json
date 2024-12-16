@@ -2,6 +2,7 @@
   "name": "@repo/ui",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "exports": {
     "./globals.css": "./src/globals.css",
     "./postcss.config": "./postcss.config.mjs",
@@ -11,37 +12,27 @@
       "./src/hooks/*.ts",
       "./src/hooks/*.tsx"
     ],
-    "./*": "./src/components/ui/*.tsx"
-  },
-  "scripts": {
-    "lint": "eslint .",
-    "ui": "pnpm dlx shadcn@latest"
+    "./*": "./src/components/ui/*.tsx",
+    "./icon": "./src/components/icon/index.tsx"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-slot": "^1.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "next-themes": "^0.3.0",
+    "next-themes": "^0.4.4",
+    "react": "^19.0.0",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7",
-    "vaul": "^1.1.1",
-    "zod": "^3.23.8"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/ts-config": "workspace:*",
     "@types/node": "^22.8.6",
-    "@types/react": "^18",
+    "@types/react": "18.3.1",
     "autoprefixer": "^10.4.20",
     "lucide-react": "^0.454.0",
     "postcss": "^8.4.47",
     "postcss-load-config": "^6",
     "tailwindcss": "^3.4.1"
-  },
-  "peerDependencies": {
-    "react": "^18"
-  },
-  "overrides": {
-    "react-is": "^19.0.0-rc-69d4b800-20241021"
   }
 }
