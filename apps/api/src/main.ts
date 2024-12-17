@@ -1,19 +1,19 @@
+import { AppModule } from '@/app.module';
+import { swaggerConfig } from '@/common/configs';
 import { ReqLogInterceptor } from '@/common/interceptors';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { NestFastifyApplication } from '@nestjs/platform-fastify';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { SwaggerModule } from '@nestjs/swagger';
 import { Logger } from 'nestjs-pino';
-import { swaggerConfig } from 'src/common/configs';
-import { AppModule } from './app.module';
 async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     bufferLogs: true,
   });
   const configService = app.get(ConfigService);
   app.enableCors({ credentials: true, origin: '*' });
-  app.setGlobalPrefix('api-2-1');
+  app.setGlobalPrefix('api');
   app.useGlobalInterceptors(new ReqLogInterceptor());
   app.useLogger(app.get(Logger));
   app.useGlobalPipes(
@@ -27,7 +27,7 @@ async function bootstrap() {
     }),
   );
   const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api-2-1-docs', app, document);
+  SwaggerModule.setup('api-docs', app, document);
   await app.listen(configService.get('PORT')!); // Listen on port defined in.env file
 }
 

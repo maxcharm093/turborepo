@@ -1,7 +1,7 @@
 import z, { ZodSchema } from 'zod';
 import { env } from './env';
 
-const safeFetch = async <T extends ZodSchema<unknown>>(
+export const safeFetch = async <T extends ZodSchema<unknown>>(
   schema: T,
   url: URL | RequestInfo,
   init?: RequestInit,
@@ -32,5 +32,3 @@ const safeFetch = async <T extends ZodSchema<unknown>>(
     error: null,
   };
 };
-
-export default safeFetch;

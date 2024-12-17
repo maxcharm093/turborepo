@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL('https:///www.aungpyaephyo.com'),
   title: {
     default: 'Turborepo',
@@ -35,5 +35,3 @@ const metadata: Metadata = {
     google: 'Enter your Google Search Console verification code here',
   },
 };
-
-export default metadata;
