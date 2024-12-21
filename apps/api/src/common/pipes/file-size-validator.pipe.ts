@@ -1,9 +1,9 @@
 import { FileValidator } from '@nestjs/common';
 import { IFile } from '@nestjs/common/pipes/file/interfaces';
 
-export type FileSizeValidatorOptions = {
+export interface FileSizeValidatorOptions {
   fileSize: number;
-};
+}
 
 /**
  * Defines the built-in FileType File Validator. It validates incoming files mime-type

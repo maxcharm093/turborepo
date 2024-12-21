@@ -33,7 +33,7 @@ export class JwtAuthGuard implements CanActivate {
       throw new UnauthorizedException();
     }
     try {
-      request['user'] = await this.jwtService.verifyAsync(token, {
+      request.user = await this.jwtService.verifyAsync(token, {
         secret: this.configService.get('ACCESS_TOKEN_SECRET'),
       });
     } catch {

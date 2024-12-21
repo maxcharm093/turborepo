@@ -17,8 +17,8 @@ export class AuthController {
     const data = await this.authService.register(createUserDto);
     return {
       message: 'User registered successfully',
-      data: data['data'],
-      tokens: data['token'],
+      data: data.data,
+      tokens: data.token,
     };
   }
 
@@ -28,8 +28,8 @@ export class AuthController {
     const data = await this.authService.signIn(signInUserDto);
     return {
       message: 'User signed in successfully',
-      data: data['data'],
-      tokens: data['token'],
+      data: data.data,
+      tokens: data.token,
     };
   }
 
@@ -46,7 +46,7 @@ export class AuthController {
     const data = await this.authService.refreshToken(refreshTokenDto);
     return {
       message: 'Refresh token generated successfully',
-      access_token: data['access_token'],
+      access_token: data.access_token,
     };
   }
 }

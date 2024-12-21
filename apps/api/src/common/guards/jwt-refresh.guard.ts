@@ -27,7 +27,7 @@ export class JwtRefreshGuard implements CanActivate {
       throw new UnauthorizedException();
     }
     try {
-      request['user'] = await this.jwtService.verifyAsync(token, {
+      request.user = await this.jwtService.verifyAsync(token, {
         secret: this.configService.get('REFRESH_TOKEN_SECRET'),
       });
     } catch {

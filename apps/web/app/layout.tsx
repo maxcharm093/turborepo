@@ -1,5 +1,5 @@
 import Providers from '@/components/providers';
-import metadata from '@/lib/metadata';
+import { metadata } from '@/lib';
 import '@repo/ui/globals.css';
 import { cn } from '@repo/ui/lib/utils';
 import { ReactNode } from 'react';
