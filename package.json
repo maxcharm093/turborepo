@@ -1,6 +1,45 @@
 {
   "name": "my-turborepo",
+  "version": "1.0.1",
   "private": true,
+  "keywords": [
+    "turbo",
+    "monorepo",
+    "pnpm",
+    "typescript",
+    "react",
+    "nextjs",
+    "nestjs",
+    "typeorm",
+    "swc",
+    "tailwindcss",
+    "eslint",
+    "prettier",
+    "husky",
+    "lint-staged",
+    "commitizen",
+    "cz-conventional-changelog",
+    "changeset",
+    "jest",
+    "typeorm-seeding",
+    "typeorm-fixtures",
+    "typeorm-transactional-tests",
+    "typeorm-transactional-cls-hooked",
+    "typeorm-transactional-cls-hooked-fixtures",
+    "typeorm-transactional-cls-hooked-seeding",
+    "typeorm-transactional-cls-hooked-fixtures-seeding"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aungphyoex/turbo-npn.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Aung Pyae Phyo",
+    "email": "hi@aungpyaephyo.com",
+    "url": "https://aungpyaephyo.com",
+    "github": "aungphyoex"
+  },
   "scripts": {
     "add:api": "pnpm add --filter=api",
     "add:web": "pnpm add --filter=web",
