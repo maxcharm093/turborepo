@@ -1,4 +1,4 @@
-<img src="preview.png" width="100%">
+<img src="apps/web/public/preview.png" width="100%">
 
 ## NestJS & NextJS Boilerplate with Turborepo
 

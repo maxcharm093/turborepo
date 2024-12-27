@@ -1,6 +1,7 @@
 import { AppModule } from '@/app.module';
 import { swaggerConfig } from '@/common/configs';
 import { ReqLogInterceptor } from '@/common/interceptors';
+import { Env } from '@/common/schemas/env.schema';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
@@ -9,13 +10,14 @@ import { SwaggerModule } from '@nestjs/swagger';
 import { Logger } from 'nestjs-pino';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    bufferLogs: true,
+    bufferLogs: false,
   });
-  const configService = app.get(ConfigService);
+  const configService = app.get(ConfigService<Env>);
+  const logger = app.get(Logger);
   app.enableCors({ credentials: true, origin: '*' });
   app.setGlobalPrefix('api');
   app.useGlobalInterceptors(new ReqLogInterceptor());
-  app.useLogger(app.get(Logger));
+  app.useLogger(logger);
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -29,6 +31,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api-docs', app, document);
   await app.listen(configService.get('PORT')!); // Listen on port defined in.env file
+  logger.log(
+    `Application start at https://${configService.get('HOST')}:${configService.get('PORT')}`,
+  );
 }
 
 bootstrap().catch((err) => console.error(err));

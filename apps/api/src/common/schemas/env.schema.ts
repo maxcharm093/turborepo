@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const EnvSchema = z.object({
+  HOST: z.string(),
   NODE_ENV: z
     .enum(['development', 'production', 'test', 'provision'])
     .default('development'),

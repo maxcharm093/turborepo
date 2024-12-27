@@ -18,7 +18,7 @@ export class AuthController {
     return {
       message: 'User registered successfully',
       data: data.data,
-      tokens: data.token,
+      tokens: data.tokens,
     };
   }
 
@@ -29,7 +29,7 @@ export class AuthController {
     return {
       message: 'User signed in successfully',
       data: data.data,
-      tokens: data.token,
+      tokens: data.tokens,
     };
   }
 

@@ -9,6 +9,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerModule } from 'nestjs-pino';
 
 export const moduleConfig = [
+  JwtModule.register({
+    global: true,
+  }),
+  ThrottlerModule.forRoot({
+    throttlers: throttleConfig,
+    errorMessage: 'Too many requests, please try again later.',
+  }),
+  ConfigModule.forRoot({
+    isGlobal: true,
+    validate: validateEnv,
+  }),
   LoggerModule.forRootAsync({
     imports: [ConfigModule],
     inject: [ConfigService],
@@ -19,14 +30,6 @@ export const moduleConfig = [
         },
       },
     }),
-  }),
-  ThrottlerModule.forRoot({
-    throttlers: throttleConfig,
-    errorMessage: 'Too many requests, please try again later.',
-  }),
-  ConfigModule.forRoot({
-    isGlobal: true,
-    validate: validateEnv,
   }),
   TypeOrmModule.forRootAsync({
     imports: [ConfigModule],
@@ -41,14 +44,6 @@ export const moduleConfig = [
       synchronize: true,
       logging: true,
       autoLoadEntities: true,
-    }),
-  }),
-  JwtModule.registerAsync({
-    global: true,
-    imports: [ConfigModule],
-    inject: [ConfigService],
-    useFactory: (config: ConfigService<Env>) => ({
-      secret: config.get('ACCESS_TOKEN_SECRET'),
     }),
   }),
   MailerModule.forRootAsync({
