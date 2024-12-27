@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
+export const metadata = {
   metadataBase: new URL('https:///www.aungpyaephyo.com'),
   title: {
     default: 'Turborepo',
@@ -30,8 +30,11 @@ export const metadata: Metadata = {
   twitter: {
     title: 'Turborepo',
     card: 'summary_large_image',
+    site: '@aungpyaephyo',
+    creator: '@aungpyaephyo',
+    description: 'Description of Turborepo.',
   },
   verification: {
     google: 'Enter your Google Search Console verification code here',
   },
-};
+} satisfies Metadata;

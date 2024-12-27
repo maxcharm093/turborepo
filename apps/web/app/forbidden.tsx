@@ -1,37 +1,31 @@
 'use client';
-
 import { Button } from '@repo/ui/button';
 import { RotateCw } from '@repo/ui/icon';
 import { cn } from '@repo/ui/lib/utils';
 import { useRouter } from 'next/navigation';
-import { useEffect, useTransition } from 'react';
+import { useTransition } from 'react';
 
-const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
+const Forbidden = () => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  useEffect(() => {
-    // Log the error to an error reporting service
-    console.error(error);
-  }, [error]);
-
   return (
     <div className="w-full flex flex-col min-h-dvh gap-9 items-center justify-center">
+      <h1 className="font-semibold text-base">403 | Forbidden</h1>
       <p className="font-semibold">
-        Oh no, something went wrong... maybe refresh?
+        You are not authorized to access this resource.
       </p>
       <Button
         onClick={() => {
           startTransition(() => {
-            reset();
-            router.refresh();
+            router.push('/');
           });
         }}
       >
-        Try Again
+        Return Home
         <RotateCw className={cn('size-5', isPending && 'animate-spin')} />
       </Button>
     </div>
   );
 };
 
-export default Error;
+export default Forbidden;

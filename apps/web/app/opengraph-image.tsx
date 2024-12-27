@@ -11,8 +11,8 @@ export const size = {
 
 export const contentType = 'image/png';
 
-export default async function Image() {
-  return new ImageResponse(
+const OpengraphImage = async () =>
+  new ImageResponse(
     (
       <div
         style={{
@@ -46,4 +46,5 @@ export default async function Image() {
       ...size,
     },
   );
-}
+
+export default OpengraphImage;

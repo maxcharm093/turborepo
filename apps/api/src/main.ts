@@ -10,7 +10,7 @@ import { SwaggerModule } from '@nestjs/swagger';
 import { Logger } from 'nestjs-pino';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    bufferLogs: false,
+    bufferLogs: true,
   });
   const configService = app.get(ConfigService<Env>);
   const logger = app.get(Logger);
