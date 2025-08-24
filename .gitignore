@@ -36,3 +36,10 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+.env
+.env.*
+*.pem
+*.p12
+*.pfx
+*.keystore
